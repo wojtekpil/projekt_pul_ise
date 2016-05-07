@@ -2,15 +2,15 @@
 -- Company: 
 -- Engineer:
 --
--- Create Date:   19:50:02 04/23/2016
+-- Create Date:   18:22:26 05/07/2016
 -- Design Name:   
--- Module Name:   F:/dane/vlsi/pul_projekt/dist_sensor_tb.vhd
+-- Module Name:   F:/dane/vlsi/pul_projekt/main_tb.vhd
 -- Project Name:  pul_projekt
 -- Target Device:  
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: dist_sensor
+-- VHDL Test Bench Created by ISE for module: main
 -- 
 -- Dependencies:
 -- 
@@ -32,57 +32,55 @@ USE ieee.std_logic_1164.ALL;
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY dist_sensor_tb IS
-END dist_sensor_tb;
+ENTITY main_tb IS
+END main_tb;
  
-ARCHITECTURE behavior OF dist_sensor_tb IS 
+ARCHITECTURE behavior OF main_tb IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT dist_sensor
+    COMPONENT main
     PORT(
+         clk : IN  std_logic;
+         lcd_e : OUT  std_logic;
+         lcd_rs : OUT  std_logic;
+         lcd_rw : OUT  std_logic;
+         lcd_db : OUT  std_logic_vector(7 downto 4);
          trig : OUT  std_logic;
          echo : IN  std_logic;
-         start : IN  std_logic;
-         busy : OUT  std_logic;
-         dist_cm : OUT  std_logic_vector(3 downto 0);
-         dist_dm : OUT  std_logic_vector(3 downto 0);
-         dist_m : OUT  std_logic_vector(2 downto 0);
-         clk : IN  std_logic;
          reset : IN  std_logic
         );
     END COMPONENT;
     
 
    --Inputs
-   signal echo : std_logic := '0';
-   signal start : std_logic := '0';
    signal clk : std_logic := '0';
+   signal echo : std_logic := '0';
    signal reset : std_logic := '0';
 
  	--Outputs
+   signal lcd_e : std_logic;
+   signal lcd_rs : std_logic;
+   signal lcd_rw : std_logic;
+   signal lcd_db : std_logic_vector(7 downto 4);
    signal trig : std_logic;
-   signal busy : std_logic;
-   signal dist_cm : std_logic_vector(3 downto 0);
-   signal dist_dm : std_logic_vector(3 downto 0);
-   signal dist_m : std_logic_vector(2 downto 0);
 
    -- Clock period definitions
    constant clk_period : time := 10 ns;
 	constant COUNTER_1CM : integer := 5 - 1;
 	constant SIM_DISTANCE_CM: integer := 8;
+ 
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: dist_sensor PORT MAP (
+   uut: main PORT MAP (
+          clk => clk,
+          lcd_e => lcd_e,
+          lcd_rs => lcd_rs,
+          lcd_rw => lcd_rw,
+          lcd_db => lcd_db,
           trig => trig,
           echo => echo,
-          start => start,
-          busy => busy,
-          dist_cm => dist_cm,
-          dist_dm => dist_dm,
-          dist_m => dist_m,
-          clk => clk,
           reset => reset
         );
 
@@ -103,19 +101,28 @@ BEGIN
 		reset <= '0';
       wait for 100 ns;	
 		reset <= '1';
-		--wait 5 cylces to start measurment
-      wait for clk_period*5;
-		start <= '1';
-		wait for clk_period*10;
-		--disable start
-		start <= '0';
+		--wait for trigger
+		wait on trig;
 		--hc-sr04 response with echo
+		wait for clk_period*10;
 		echo <= '1';
+		
 		--wait time aprox corresponding 3cm (while 1cm = 5 clocks ticks -- for simulation only)
 		wait for clk_period*SIM_DISTANCE_CM*(COUNTER_1CM+1);
 		echo <= '0';
 		
-		wait for clk_period*100;
+		--wait for trigger
+		wait on trig;
+		--hc-sr04 response with echo
+		wait for clk_period*10;
+		echo <= '1';
+		
+		--wait time aprox corresponding 3cm (while 1cm = 5 clocks ticks -- for simulation only)
+		wait for clk_period*SIM_DISTANCE_CM*(COUNTER_1CM+1);
+		echo <= '0';
+		--wait for trigger and end
+		wait on trig;
+		
 		
 		
       -- insert stimulus here 

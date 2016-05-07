@@ -46,10 +46,12 @@ architecture Behavioral of dist_sensor is
 
 signal counter: std_logic_vector(11 downto 0); -- counter to measure distance
 signal counter_trig: std_logic_vector(8 downto 0);  -- counter to measure trigger length
+signal counter_cycle: std_logic_vector(23 downto 0);  -- counter to measure cycle 
 signal cnt_cm, cnt_dm: std_logic_vector(3 downto 0);  -- distance
 signal cnt_m: std_logic_vector(2 downto 0);  -- distance
 signal trigger_send: std_logic;  -- boolean is trigger send ?
 signal timeout: std_logic; -- no obstacle in range ?
+signal cycle_completed: std_logic;  -- boolean is full cycle of measurment completed
 
 type sensor_state is (idle, send_trigger, wait_for_echo, meas_distance); -- state machine
 signal state: sensor_state;
@@ -57,6 +59,8 @@ signal next_state: sensor_state;
 
 constant COUNTER_1CM : integer := 5-1;--2900-1; 
 constant COUNTER_TRIGGER : integer :=  2;--500-1;
+--measurment cycle should be over 60ms
+constant COUNTER_MEAS_CYCLE : integer := 80-1;--3000000-1; 
 
 begin
 	-- state machine initilaizer
@@ -70,7 +74,7 @@ begin
 	end process autom_sync;
 	
 	-- state machine
-	autom: process(state, start, trigger_send, echo, timeout) 
+	autom: process(state, start, trigger_send, cycle_completed, echo, timeout) 
 	begin
 		next_state <= state;
 		case state is 
@@ -90,15 +94,17 @@ begin
 					next_state <= meas_distance;
 				end if;
 			when meas_distance =>
-				if(timeout = '1') then -- measurment completed 
+				if(timeout = '1' and cycle_completed = '1') then -- measurment completed 
 					busy <= '0'; -- release busy flag
 					next_state <= idle; -- go to idle state
+				else 
+					busy <= '1';
 				end if;
 		end case;
 	end process autom;
 	
 	--send trigger counter
-	send_trig: process(clk, reset) 
+	send_trig: process(clk, reset, state) 
 	begin
 		if(reset = '0' OR state /= send_trigger) then -- if reset or not our state clear
 			counter_trig <= (others => '0');
@@ -111,8 +117,23 @@ begin
 		end if;
 	end process send_trig;
 	
+	--send trigger counter
+	cycle_timer: process(clk, reset, state) 
+	begin
+		if(reset = '0' OR state = idle) then -- if reset or not our state clear
+			counter_cycle <= (others => '0');
+			cycle_completed <= '0';
+		elsif(clk'event and clk = '1') then
+			if(counter_cycle >= COUNTER_MEAS_CYCLE) then  -- 10uS passed, set trigger
+				cycle_completed <= '1';
+			else
+				counter_cycle <= counter_cycle +"01";
+			end if;
+		end if;
+	end process cycle_timer;
+	
 	--measure distance counter
-	meas_dist: process(clk, reset)
+	meas_dist: process(clk, reset, state)
 	begin 
 		if(reset = '0' OR state = send_trigger) then -- if reset or not our state clear
 			counter <= (others => '0');

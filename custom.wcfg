@@ -12,7 +12,7 @@
          </top_modules>
       </db_ref>
    </db_ref_list>
-   <WVObjectSize size="13" />
+   <WVObjectSize size="15" />
    <wvobject fp_name="/dist_sensor_tb/echo" type="logic" db_ref_id="1">
       <obj_property name="ElementShortName">echo</obj_property>
       <obj_property name="ObjectShortName">echo</obj_property>
@@ -68,5 +68,14 @@
       <obj_property name="ElementShortName">counter[11:0]</obj_property>
       <obj_property name="ObjectShortName">counter[11:0]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dist_sensor_tb/uut/counter_cycle" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">counter_cycle[23:0]</obj_property>
+      <obj_property name="ObjectShortName">counter_cycle[23:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/dist_sensor_tb/uut/cycle_completed" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">cycle_completed</obj_property>
+      <obj_property name="ObjectShortName">cycle_completed</obj_property>
    </wvobject>
 </wave_config>

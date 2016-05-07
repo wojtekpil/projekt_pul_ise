@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="F:/dane/vlsi/pul_projekt/main_tb_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="main_tb" />
+            <top_module name="std_logic_1164" />
+            <top_module name="std_logic_arith" />
+            <top_module name="std_logic_unsigned" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/main_tb/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/echo" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">echo</obj_property>
+      <obj_property name="ObjectShortName">echo</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/reset" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/state" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/start_dist" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">start_dist</obj_property>
+      <obj_property name="ObjectShortName">start_dist</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/busy_dist" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">busy_dist</obj_property>
+      <obj_property name="ObjectShortName">busy_dist</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/dist_cm" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dist_cm[3:0]</obj_property>
+      <obj_property name="ObjectShortName">dist_cm[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/dist_dm" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dist_dm[3:0]</obj_property>
+      <obj_property name="ObjectShortName">dist_dm[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/dist_m" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dist_m[2:0]</obj_property>
+      <obj_property name="ObjectShortName">dist_m[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/Inst_dist_sensor/state" type="other" db_ref_id="1">
+      <obj_property name="DisplayName">FullPathName</obj_property>
+      <obj_property name="ElementShortName">state</obj_property>
+      <obj_property name="ObjectShortName">state</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/dist_cm_to_disp" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dist_cm_to_disp[3:0]</obj_property>
+      <obj_property name="ObjectShortName">dist_cm_to_disp[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/dist_dm_to_disp" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dist_dm_to_disp[3:0]</obj_property>
+      <obj_property name="ObjectShortName">dist_dm_to_disp[3:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/dist_m_to_disp" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">dist_m_to_disp[2:0]</obj_property>
+      <obj_property name="ObjectShortName">dist_m_to_disp[2:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/Inst_dist_sensor/counter" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">counter[11:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[11:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/main_tb/uut/DUT/line1_buffer" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">line1_buffer[127:0]</obj_property>
+      <obj_property name="ObjectShortName">line1_buffer[127:0]</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="vbus144" type="vbus" db_ref_id="1">
+      <obj_property name="label">m</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="Radix">ASCIIRADIX</obj_property>
+      <wvobject fp_name="/main_tb/uut/DUT/line1_buffer[119]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[119]</obj_property>
+         <obj_property name="ObjectShortName">line1_buffer[119]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/uut/DUT/line1_buffer[118]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[118]</obj_property>
+         <obj_property name="ObjectShortName">line1_buffer[118]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/uut/DUT/line1_buffer[117]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[117]</obj_property>
+         <obj_property name="ObjectShortName">line1_buffer[117]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/uut/DUT/line1_buffer[116]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[116]</obj_property>
+         <obj_property name="ObjectShortName">line1_buffer[116]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/uut/DUT/line1_buffer[115]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[115]</obj_property>
+         <obj_property name="ObjectShortName">line1_buffer[115]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/uut/DUT/line1_buffer[114]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[114]</obj_property>
+         <obj_property name="ObjectShortName">line1_buffer[114]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/uut/DUT/line1_buffer[113]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[113]</obj_property>
+         <obj_property name="ObjectShortName">line1_buffer[113]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/main_tb/uut/DUT/line1_buffer[112]" type="logic" db_ref_id="1">
+         <obj_property name="ElementShortName">[112]</obj_property>
+         <obj_property name="ObjectShortName">line1_buffer[112]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
